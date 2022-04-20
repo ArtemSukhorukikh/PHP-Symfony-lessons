@@ -29,6 +29,12 @@ class CourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ( $courseRepository->findOneBy(['code'=>$course->getCode()])) {
+                return $this->renderForm('course/new.html.twig', [
+                    'course' => $course,
+                    'form' => $form,
+                ]);
+            }
             $courseRepository->add($course);
             return $this->redirectToRoute('app_course_show', ['id'=>$course->getId()], Response::HTTP_SEE_OTHER);
         }
