@@ -35,7 +35,7 @@ class Course
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="course")
+     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="course", cascade={"persist"})
      */
     private $lessons;
 
@@ -44,6 +44,10 @@ class Course
         $this->lessons = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return (string)$this->getName();
+    }
     public function getId(): ?int
     {
         return $this->id;
