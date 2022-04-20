@@ -17,9 +17,9 @@
             </tr>
             <tr>
                 <th>Уроки</th>
-                {% for lesson in course.lessons %}
-                    <td><a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">{{ lesson.name }}</a></td>
-                {% endfor %}
+                <td><ul>{% for lesson in course.lessons %}
+                    <li><a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">{{ lesson.name }}</a></li>
+                {% endfor %}</ul></td>
             </tr>
         </tbody>
     </table>
